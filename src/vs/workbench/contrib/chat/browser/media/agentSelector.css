@@ -1,0 +1,157 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* Agent Selector Container */
+.agent-selector {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 12px;
+	border-bottom: 1px solid var(--vscode-panel-border);
+	background-color: var(--vscode-sideBar-background);
+}
+
+.agent-selector-title {
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--vscode-foreground);
+	margin-bottom: 4px;
+}
+
+.agent-selector-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.agent-button-container {
+	flex: 0 0 auto;
+}
+
+.agent-button-container .monaco-button {
+	min-width: 120px;
+	padding: 6px 12px;
+	font-size: 12px;
+	transition: all 0.2s ease;
+}
+
+.agent-button-container .monaco-button.active {
+	background-color: var(--vscode-button-background) !important;
+	color: var(--vscode-button-foreground) !important;
+	border: 1px solid var(--vscode-button-border) !important;
+	font-weight: 600;
+}
+
+.agent-button-container .monaco-button:hover {
+	background-color: var(--vscode-button-hoverBackground);
+	transform: translateY(-1px);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.agent-button-container .monaco-button .codicon {
+	margin-right: 6px;
+}
+
+/* Compact Agent Selector */
+.compact-agent-selector {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 12px;
+	background-color: var(--vscode-sideBar-background);
+	border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.agent-selector-label {
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--vscode-foreground);
+	white-space: nowrap;
+}
+
+.agent-selector-dropdown {
+	flex: 1;
+	min-width: 200px;
+	padding: 4px 8px;
+	font-size: 12px;
+	background-color: var(--vscode-dropdown-background);
+	color: var(--vscode-dropdown-foreground);
+	border: 1px solid var(--vscode-dropdown-border);
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+.agent-selector-dropdown:hover {
+	background-color: var(--vscode-dropdown-listBackground);
+}
+
+.agent-selector-dropdown:focus {
+	outline: 1px solid var(--vscode-focusBorder);
+	outline-offset: -1px;
+}
+
+/* Agent Badge */
+.agent-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 2px 8px;
+	font-size: 11px;
+	font-weight: 600;
+	border-radius: 10px;
+	background-color: var(--vscode-badge-background);
+	color: var(--vscode-badge-foreground);
+}
+
+.agent-badge.debugging {
+	background-color: var(--vscode-editorError-foreground);
+	color: var(--vscode-editor-background);
+}
+
+.agent-badge.code-review {
+	background-color: var(--vscode-editorInfo-foreground);
+	color: var(--vscode-editor-background);
+}
+
+.agent-badge.industry-standards {
+	background-color: var(--vscode-editorWarning-foreground);
+	color: var(--vscode-editor-background);
+}
+
+.agent-badge.security {
+	background-color: var(--vscode-problemsErrorIcon-foreground);
+	color: var(--vscode-editor-background);
+}
+
+.agent-badge.code-assistance {
+	background-color: var(--vscode-symbolIcon-variableForeground);
+	color: var(--vscode-editor-background);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.agent-selector-buttons {
+		flex-direction: column;
+	}
+
+	.agent-button-container {
+		flex: 1 1 auto;
+	}
+
+	.agent-button-container .monaco-button {
+		width: 100%;
+	}
+}
+
+/* Dark Theme Adjustments */
+.vs-dark .agent-selector,
+.hc-black .agent-selector {
+	border-bottom-color: var(--vscode-panel-border);
+}
+
+.vs-dark .agent-button-container .monaco-button:hover,
+.hc-black .agent-button-container .monaco-button:hover {
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}

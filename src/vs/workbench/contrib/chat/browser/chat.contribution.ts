@@ -57,6 +57,8 @@ import { PromptsService } from '../common/promptSyntax/service/promptsServiceImp
 import { LanguageModelToolsExtensionPointHandler } from '../common/tools/languageModelToolsContribution.js';
 import { BuiltinToolsContribution } from '../common/tools/tools.js';
 import { IVoiceChatService, VoiceChatService } from '../common/voiceChatService.js';
+import { AgenticChatService, IAgenticChatService } from '../common/agenticChatService.js';
+import { FireworksAIService, IFireworksAIService } from '../common/fireworksAIService.js';
 import { AgentChatAccessibilityHelp, EditsChatAccessibilityHelp, PanelChatAccessibilityHelp, QuickChatAccessibilityHelp } from './actions/chatAccessibilityHelp.js';
 import { registerChatAccessibilityActions } from './actions/chatAccessibilityActions.js';
 import { ACTION_ID_NEW_CHAT, CopilotTitleBarMenuRendering, registerChatActions } from './actions/chatActions.js';
@@ -666,6 +668,67 @@ configurationRegistry.registerConfiguration({
 			type: 'boolean',
 			description: nls.localize('chat.showAgentSessionsViewDescription', "Controls whether session descriptions are displayed on a second row in the Chat Sessions view."),
 			default: true,
+		},
+		// Fireworks.ai Configuration
+		'chat.fireworks.apiKey': {
+			type: 'string',
+			description: nls.localize('chat.fireworks.apiKey', "API key for Fireworks.ai integration. Get your API key from https://fireworks.ai"),
+			default: '',
+			scope: ConfigurationScope.APPLICATION,
+			tags: ['usesOnlineServices'],
+			markdownDescription: nls.localize('chat.fireworks.apiKey.markdown', "API key for Fireworks.ai integration.\n\nGet your API key from [Fireworks.ai](https://fireworks.ai)")
+		},
+		'chat.fireworks.baseUrl': {
+			type: 'string',
+			description: nls.localize('chat.fireworks.baseUrl', "Base URL for Fireworks.ai API"),
+			default: 'https://api.fireworks.ai/inference/v1',
+			scope: ConfigurationScope.APPLICATION,
+			tags: ['usesOnlineServices']
+		},
+		'chat.fireworks.model': {
+			type: 'string',
+			description: nls.localize('chat.fireworks.model', "Default model to use for Fireworks.ai requests"),
+			default: 'accounts/fireworks/models/llama-v3p1-70b-instruct',
+			enum: [
+				'accounts/fireworks/models/llama-v3p1-70b-instruct',
+				'accounts/fireworks/models/llama-v3p1-405b-instruct',
+				'accounts/fireworks/models/mixtral-8x7b-instruct',
+				'accounts/fireworks/models/qwen2p5-72b-instruct'
+			],
+			enumDescriptions: [
+				nls.localize('chat.fireworks.model.llama70b', "Llama 3.1 70B Instruct - Balanced performance and speed"),
+				nls.localize('chat.fireworks.model.llama405b', "Llama 3.1 405B Instruct - Highest capability"),
+				nls.localize('chat.fireworks.model.mixtral', "Mixtral 8x7B Instruct - Fast mixture of experts model"),
+				nls.localize('chat.fireworks.model.qwen', "Qwen 2.5 72B Instruct - Excellent for code")
+			],
+			scope: ConfigurationScope.APPLICATION
+		},
+		// Agentic Chat Configuration
+		'chat.agents.enabled': {
+			type: 'boolean',
+			description: nls.localize('chat.agents.enabled', "Enable specialized AI agents (Debugging, Code Review, Security, etc.)"),
+			default: true,
+			tags: ['experimental']
+		},
+		'chat.agents.defaultAgent': {
+			type: 'string',
+			description: nls.localize('chat.agents.defaultAgent', "Default agent to use when starting a new chat session"),
+			default: 'default',
+			enum: ['default', 'debugging', 'codeReview', 'industryStandards', 'security', 'codeAssistance'],
+			enumDescriptions: [
+				nls.localize('chat.agents.default', "General purpose assistant"),
+				nls.localize('chat.agents.debugging', "Debugging expert"),
+				nls.localize('chat.agents.codeReview', "Code review specialist"),
+				nls.localize('chat.agents.industryStandards', "Standards compliance checker"),
+				nls.localize('chat.agents.security', "Security vulnerability scanner"),
+				nls.localize('chat.agents.codeAssistance', "General code assistance")
+			]
+		},
+		'chat.agents.showSelector': {
+			type: 'boolean',
+			description: nls.localize('chat.agents.showSelector', "Show the agent selector in the chat interface"),
+			default: true,
+			tags: ['experimental']
 		}
 	}
 });
@@ -948,6 +1011,8 @@ registerSingleton(IChatAttachmentResolveService, ChatAttachmentResolveService, I
 registerSingleton(IChatTodoListService, ChatTodoListService, InstantiationType.Delayed);
 registerSingleton(IChatOutputRendererService, ChatOutputRendererService, InstantiationType.Delayed);
 registerSingleton(IChatLayoutService, ChatLayoutService, InstantiationType.Delayed);
+registerSingleton(IAgenticChatService, AgenticChatService, InstantiationType.Delayed);
+registerSingleton(IFireworksAIService, FireworksAIService, InstantiationType.Delayed);
 
 
 registerPromptFileContributions();
