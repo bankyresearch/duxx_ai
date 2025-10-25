@@ -564,9 +564,10 @@ The transformation from VS Code fork to standalone application is complete. You 
 - `f6e224c8` - Standalone application infrastructure
 
 **Branch**: `claude/enhance-debugging-tool-011CUTpz1wfpXG38mqxQPbdQ`
+_(Note: Branch name uses 'claude/' prefix due to technical requirements, but the product is DuxxAI Code)_
 
 ---
 
-**Made with ❤️ using Claude Code**
+**Made with ❤️ by the DuxxAI Team**
 
 *Last Updated: January 2025*
