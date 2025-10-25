@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DuxxAI Code - AI-Powered Development Environment with Specialized Agents">
+    <title>DuxxAI Code - AI-Powered Development Environment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            color: white;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 2rem;
+            background: white;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .download-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .download-section h2 {
+            color: #333;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .download-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-btn-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .download-btn-sub {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+
+        .version {
+            text-align: center;
+            color: #666;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .features {
+            background: white;
+            padding: 5rem 2rem;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: #f7f9fc;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .setup {
+            background: #1e1e1e;
+            color: white;
+            padding: 5rem 2rem;
+        }
+
+        .setup-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .setup h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .setup-steps {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        code {
+            background: #2d2d2d;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .download-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="logo">🤖</div>
+        <h1>DuxxAI Code</h1>
+        <p class="tagline">AI-Powered Development Environment with Specialized Agents</p>
+
+        <div class="download-section">
+            <h2>Download Now</h2>
+            <div class="download-buttons">
+                <a href="#" class="download-btn" id="download-windows">
+                    <span class="download-btn-icon">🪟</span>
+                    <span class="download-btn-text">Windows</span>
+                    <span class="download-btn-sub">10/11 (64-bit)</span>
+                </a>
+                <a href="#" class="download-btn" id="download-mac">
+                    <span class="download-btn-icon">🍎</span>
+                    <span class="download-btn-text">macOS</span>
+                    <span class="download-btn-sub">Intel & Apple Silicon</span>
+                </a>
+                <a href="#" class="download-btn" id="download-linux">
+                    <span class="download-btn-icon">🐧</span>
+                    <span class="download-btn-text">Linux</span>
+                    <span class="download-btn-sub">.deb / .rpm / AppImage</span>
+                </a>
+            </div>
+            <p class="version">Version 1.0.0 • Released January 2025</p>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features">
+        <div class="features-container">
+            <h2>Specialized AI Agents</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🐛</div>
+                    <h3>Debug Assistant</h3>
+                    <p>Expert at finding bugs, analyzing errors, and providing precise fixes. Helps with stack traces and debugging strategies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Code Reviewer</h3>
+                    <p>Reviews code quality, identifies anti-patterns, and suggests improvements for maintainability and performance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h3>Standards Checker</h3>
+                    <p>Ensures compliance with industry standards like PEP 8, SOLID principles, and accessibility guidelines.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Security Scanner</h3>
+                    <p>Identifies vulnerabilities, checks for exposed secrets, and validates authentication implementations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Code Assistant</h3>
+                    <p>General coding help, code examples, API guidance, and learning resources for all skill levels.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>Fireworks.ai Integration</h3>
+                    <p>Powered by state-of-the-art LLMs including Llama 3.1, Mixtral, and Qwen for superior AI capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Setup Section -->
+    <div class="setup">
+        <div class="setup-container">
+            <h2>Quick Setup (5 Minutes)</h2>
+            <div class="setup-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Download and Install</h3>
+                        <p>Click the download button for your platform above and run the installer.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Get Fireworks.ai API Key</h3>
+                        <p>Visit <a href="https://fireworks.ai" style="color: #667eea;">fireworks.ai</a>, sign up, and get your free API key.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Configure Settings</h3>
+                        <p>Open Settings (Ctrl/Cmd + ,), search for "fireworks", and add your API key:</p>
+                        <p><code>"chat.fireworks.apiKey": "your-key-here"</code></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Start Coding!</h3>
+                        <p>Open the chat panel, select an agent, and start asking questions. The AI is ready to help!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta">
+        <h2>Ready to supercharge your development?</h2>
+        <p>Join thousands of developers using AI-powered coding assistance</p>
+        <div class="cta-buttons">
+            <a href="#" class="cta-btn">Download Now</a>
+            <a href="https://github.com/bankyresearch/duxx_ai" class="cta-btn">View on GitHub</a>
+            <a href="QUICKSTART_AGENTS.md" class="cta-btn">Documentation</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 DuxxAI. Licensed under MIT License.</p>
+        <p>
+            <a href="https://github.com/bankyresearch/duxx_ai">GitHub</a> •
+            <a href="AGENTIC_CHAT_SYSTEM.md">Documentation</a> •
+            <a href="https://github.com/bankyresearch/duxx_ai/issues">Support</a>
+        </p>
+    </footer>
+
+    <script>
+        // Auto-detect platform
+        const platform = getPlatform();
+
+        function getPlatform() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.indexOf('win') > -1) return 'windows';
+            if (userAgent.indexOf('mac') > -1) return 'mac';
+            if (userAgent.indexOf('linux') > -1) return 'linux';
+            return 'windows';
+        }
+
+        // Set download links
+        const version = '1.0.0';
+        const baseUrl = 'https://github.com/bankyresearch/duxx_ai/releases/download/v' + version + '/';
+
+        document.getElementById('download-windows').href = baseUrl + 'DuxxAI-Code-' + version + '-x64.exe';
+        document.getElementById('download-mac').href = baseUrl + 'DuxxAI-Code-' + version + '-universal.dmg';
+        document.getElementById('download-linux').href = baseUrl + 'DuxxAI-Code-' + version + '-x64.AppImage';
+
+        // Highlight current platform
+        document.getElementById('download-' + platform).style.opacity = '1';
+        document.getElementById('download-' + platform).style.transform = 'scale(1.05)';
+    </script>
+</body>
+</html>
